@@ -10,10 +10,12 @@ const WeatherInfo = (props) => {
               Locatia: {props.city}, {props.country}
             </p>
             <p>Temperatura: {props.temp}</p>
-            <p>Rasaritul soarelui: {props.sunrise}</p>
+            <p>Presiune: {props.pressure}</p>
             <p>Apusul soarelui: {props.sunset}</p>
           </>
-        ) : null}
+        ) : (
+          <p>{props.error}</p>
+        )}
       </div>
     </>
   );

@@ -20,12 +20,22 @@ const geatingWeather = async (e, setState) => {
       console.log(data);
 
       if (data.main && data.sys) {
+        const tempCelsius = data.main.temp - 273.15;
+        let sunset = data.sys.sunset * 1000; // convert from seconds to milliseconds
+        let date = new Date(sunset);
+        let sunset_date =
+          date.getHours() +
+          ":" +
+          date.getMinutes().toString().padStart(2, "0") +
+          ":" +
+          date.getSeconds().toString().padStart(2, "0");
+
         setState({
           temp: tempCelsius.toFixed(2),
           city: data.name,
           country: data.sys.country,
-          sunrise: data.sys.sunrise,
-          sunset: data.sys.sunset,
+          pressure: data.main.pressure,
+          sunset: sunset_date,
           error: "",
         });
       } else {
@@ -33,9 +43,9 @@ const geatingWeather = async (e, setState) => {
           temp: undefined,
           city: undefined,
           country: undefined,
-          sunrise: undefined,
+          pressure: undefined,
           sunset: undefined,
-          error: "Unable to fetch weather data",
+          error: "Intrdu corect tara boule",
         });
       }
     } catch (error) {
@@ -44,7 +54,7 @@ const geatingWeather = async (e, setState) => {
         temp: undefined,
         city: undefined,
         country: undefined,
-        sunrise: undefined,
+        pressure: undefined,
         sunset: undefined,
         error: "Error fetching the weather data",
       });
@@ -54,9 +64,9 @@ const geatingWeather = async (e, setState) => {
       temp: undefined,
       city: undefined,
       country: undefined,
-      sunrise: undefined,
+      pressure: undefined,
       sunset: undefined,
-      error: "Please enter a city",
+      error: "Introdu orasul",
     });
   }
 };
@@ -66,7 +76,7 @@ function App() {
     temp: undefined,
     city: undefined,
     country: undefined,
-    sunrise: undefined,
+    pressure: undefined,
     sunset: undefined,
     error: undefined,
   });
@@ -80,7 +90,7 @@ function App() {
           temp={state.temp}
           city={state.city}
           country={state.country}
-          sunrise={state.sunrise}
+          pressure={state.pressure}
           sunset={state.sunset}
           error={state.error}
         />
