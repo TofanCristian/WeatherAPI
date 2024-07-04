@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Info from "./components/info";
 import Form from "./components/form";
 import WeatherInfo from "./components/WeatherInfo";
-import viteLogo from "/weather.webp";
 import "./App.css";
 
 const WeatherApi = "17144a5536d2dfa1d0ceab6a595fb40a";
@@ -45,7 +44,7 @@ const geatingWeather = async (e, setState) => {
           country: undefined,
           pressure: undefined,
           sunset: undefined,
-          error: "Intrdu corect tara boule",
+          error: "Nu sa gasit asa oras",
         });
       }
     } catch (error) {
@@ -66,7 +65,7 @@ const geatingWeather = async (e, setState) => {
       country: undefined,
       pressure: undefined,
       sunset: undefined,
-      error: "Introdu orasul",
+      error: "Introdu un oras boule",
     });
   }
 };
@@ -77,26 +76,36 @@ function App() {
     city: undefined,
     country: undefined,
     pressure: undefined,
+    sunrise: undefined,
     sunset: undefined,
     error: undefined,
   });
 
   return (
     <>
-      <div>
-        <Info />
-        <Form weatherMethod={(e) => geatingWeather(e, setState)} />
-        <WeatherInfo
-          temp={state.temp}
-          city={state.city}
-          country={state.country}
-          pressure={state.pressure}
-          sunset={state.sunset}
-          error={state.error}
-        />
+      <div className="wrapper">
+        <div className="main">
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-6 info">
+                <Info />
+              </div>
+              <div className="col-sm-6 form">
+                <Form weatherMethod={(e) => geatingWeather(e, setState)} />
+                <WeatherInfo
+                  temp={state.temp}
+                  city={state.city}
+                  country={state.country}
+                  pressure={state.pressure}
+                  sunset={state.sunset}
+                  error={state.error}
+                />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
 }
-
 export default App;

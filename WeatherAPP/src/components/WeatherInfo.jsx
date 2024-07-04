@@ -3,18 +3,18 @@ import React from "react";
 const WeatherInfo = (props) => {
   return (
     <>
-      <div>
+      <div className="infoWeath">
         {props.city ? (
           <>
             <p>
-              Locatia: {props.city}, {props.country}
+              Locație: {props.city}, {props.country}
             </p>
-            <p>Temperatura: {props.temp}</p>
+            <p>Temperatură: {props.temp}</p>
             <p>Presiune: {props.pressure}</p>
             <p>Apusul soarelui: {props.sunset}</p>
           </>
         ) : (
-          <p>{props.error}</p>
+          <p className="error">{props.error}</p>
         )}
       </div>
     </>
